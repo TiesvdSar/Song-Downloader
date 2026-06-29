@@ -17,15 +17,18 @@ fn detect_source(url: &str) -> &str {
 }
 
 #[tauri::command]
-fn download(window: tauri::Window, url: String, format: String, output_path: String) {
+fn download(window: tauri::Window, url: String, format: String, output_path: String, delay_secs: u32) {
     thread::spawn(move || {
         let source = detect_source(&url);
 
         let mut cmd = if source == "spotify" {
             let mut c = Command::new("spotdl");
             c.arg("--format").arg(&format)
-                .arg("--output").arg(&output_path)
-                .arg(&url);
+                .arg("--output").arg(&output_path);
+            if delay_secs > 0 {
+                c.arg("--threads").arg("1");
+            }
+            c.arg(&url);
             c
         } else {
             let mut c = Command::new("python");
@@ -35,6 +38,10 @@ fn download(window: tauri::Window, url: String, format: String, output_path: Str
             } else {
                 c.arg("--audio-format").arg("mp3")
                     .arg("--audio-quality").arg("0");
+            }
+            if delay_secs > 0 {
+                c.arg("--sleep-interval").arg(delay_secs.to_string())
+                    .arg("--max-sleep-interval").arg((delay_secs * 2).to_string());
             }
             c.arg("-o")
                 .arg(format!("{}/%(title)s.%(ext)s", output_path))

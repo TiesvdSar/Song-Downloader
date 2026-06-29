@@ -4,6 +4,7 @@ import { open } from "@tauri-apps/plugin-dialog";
 
 const urlInput = document.querySelector<HTMLInputElement>("#url-input")!;
 const formatSelect = document.querySelector<HTMLSelectElement>("#format-select")!;
+const delaySelect = document.querySelector<HTMLSelectElement>("#delay-select")!;
 const outputPath = document.querySelector<HTMLInputElement>("#output-path")!;
 const browseBtn = document.querySelector<HTMLButtonElement>("#browse-btn")!;
 const downloadBtn = document.querySelector<HTMLButtonElement>("#download-btn")!;
@@ -21,6 +22,7 @@ browseBtn.addEventListener("click", async () => {
 downloadBtn.addEventListener("click", async () => {
   const url = urlInput.value.trim();
   const format = formatSelect.value;
+  const delaySecs = parseInt(delaySelect.value, 10);
   const folder = outputPath.value.trim();
 
   if (!url) return alert("Please enter a URL.");
@@ -51,5 +53,5 @@ downloadBtn.addEventListener("click", async () => {
     unlistenError();
   });
 
-  invoke("download", { url, format, outputPath: folder });
+  invoke("download", { url, format, outputPath: folder, delaySecs });
 });

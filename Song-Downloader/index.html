@@ -49,6 +49,15 @@
       </div>
 
       <div class="form-group">
+        <label for="delay-select">Delay between songs</label>
+        <select id="delay-select">
+          <option value="0">None — fastest</option>
+          <option value="3" selected>Light — 3–6s (recommended)</option>
+          <option value="8">Safe — 8–16s (large playlists 100+)</option>
+        </select>
+      </div>
+
+      <div class="form-group">
         <label for="output-path">Output folder</label>
         <div class="folder-row">
           <input id="output-path" type="text" placeholder="Choose a folder..." readonly />
