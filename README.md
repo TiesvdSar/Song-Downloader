@@ -57,10 +57,21 @@ Supported links:
 ### 2. Choose a format
 Select **MP3 320kbps** or **AIFF** from the format dropdown.
 
-### 3. Choose an output folder
+### 3. Set a delay (optional)
+Choose a delay between songs to avoid being throttled by YouTube:
+
+| Option | Best for |
+|--------|----------|
+| None | Single songs or very short playlists |
+| Light — 3–6s | Most playlists (recommended) |
+| Safe — 8–16s | Large playlists (100+ songs) |
+
+Already downloaded songs are always skipped instantly regardless of the delay setting.
+
+### 4. Choose an output folder
 Click **Browse** and select the folder where you want the songs saved.
 
-### 4. Click Download
+### 5. Click Download
 Click the **Download** button. The log at the bottom shows live progress. When everything is done you will see:
 ```
 ✓ Download complete.
