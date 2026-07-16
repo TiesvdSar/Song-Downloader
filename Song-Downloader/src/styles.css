@@ -26,6 +26,49 @@ h1 {
   margin-bottom: 4px;
 }
 
+/* Update banner */
+.update-banner {
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  background-color: #eaf1ff;
+  border: 1px solid #c7d9fb;
+  font-size: 0.85em;
+}
+
+.update-banner.visible {
+  display: flex;
+}
+
+#update-text {
+  color: #244da0;
+}
+
+#update-btn {
+  padding: 6px 14px;
+  font-size: 0.85em;
+  font-weight: 600;
+  border-radius: 6px;
+  border: none;
+  background-color: #396cd8;
+  color: #fff;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color 0.2s;
+}
+
+#update-btn:hover {
+  background-color: #2d58b8;
+}
+
+#update-btn:disabled {
+  opacity: 0.7;
+  cursor: default;
+}
+
 /* Platform logos */
 .platform-logos {
   display: flex;
@@ -186,5 +229,14 @@ select {
   #log {
     background: #2a2a2a;
     color: #ccc;
+  }
+
+  .update-banner {
+    background-color: #1c2a4a;
+    border-color: #2d4278;
+  }
+
+  #update-text {
+    color: #a8c0f5;
   }
 }
