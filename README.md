@@ -12,6 +12,8 @@ Download the latest installer:
 
 **[⬇ Download Song-Downloader.msi](https://github.com/TiesvdSar/Song-Downloader/releases/latest)**
 
+This app is open source — the code you're running is exactly what's in this repo. Every release is built directly from a tagged commit by [this GitHub Actions workflow](.github/workflows/release.yml), so you can check the [source](.), the [workflow run for any release](https://github.com/TiesvdSar/Song-Downloader/actions/workflows/release.yml), and the [release history](https://github.com/TiesvdSar/Song-Downloader/releases) yourself rather than taking it on faith.
+
 ---
 
 ## Installation
@@ -21,10 +23,10 @@ Run the downloaded `.msi` file and follow the installer steps.
 
 ### 2. Install the required tools
 
-The app needs three tools installed on your computer to work.
+The app needs three tools installed on your computer to work. Each one is open source — links below go to the official project/source so you can check what you're installing before you install it, rather than trusting this README blindly.
 
 #### Python
-Download and install Python from [python.org](https://www.python.org/downloads/).
+Download and install Python from [python.org](https://www.python.org/downloads/) — the official distribution, source on [GitHub](https://github.com/python/cpython).
 > During installation, check **"Add Python to PATH"**.
 
 #### yt-dlp
@@ -32,6 +34,7 @@ Open **Command Prompt** and run:
 ```
 pip install yt-dlp
 ```
+This installs from [PyPI](https://pypi.org/project/yt-dlp/), which is built from the official [yt-dlp GitHub repo](https://github.com/yt-dlp/yt-dlp) (140k+ stars, actively maintained fork of youtube-dl).
 
 #### spotdl
 `spotdl` depends on specific, older versions of `fastapi`/`starlette`/`uvicorn`. Installing it directly with `pip install spotdl` can silently downgrade those packages for every other Python tool on your machine (or get silently broken itself if something else later upgrades them). Install it isolated instead:
@@ -47,11 +50,14 @@ python -m venv %USERPROFILE%\.spotdl-venv
 ```
 ...then add `%USERPROFILE%\.spotdl-venv\Scripts` to your `PATH`.
 
+`spotdl` installs from [PyPI](https://pypi.org/project/spotdl/), built from the official [spotDL/spotify-downloader GitHub repo](https://github.com/spotDL/spotify-downloader). `pipx` itself is the official Python Packaging Authority tool — [source](https://github.com/pypa/pipx).
+
 #### ffmpeg
 Download and install ffmpeg using **winget**. Open **Command Prompt** and run:
 ```
 winget install Gyan.FFmpeg
 ```
+This installs the Windows builds maintained by Gyan Doshi ([build source/repo](https://github.com/GyanD/codexffmpeg)), packaged from the official [FFmpeg project](https://ffmpeg.org/) — the same builds recommended on [ffmpeg.org's download page](https://ffmpeg.org/download.html#build-windows).
 
 After installing, **restart your computer** to make sure everything is recognised.
 
