@@ -132,4 +132,9 @@ Existing installs pick up the new version automatically via the in-app updater (
 
 **Spotify downloads not working** — make sure `spotdl` is installed: `pip install spotdl`.
 
+**Every song fails with `YT-DLP download error` or `HTTP Error 403`** — YouTube changed how it serves audio and yt-dlp is out of date. `spotdl` uses its own copy of yt-dlp, separate from the one used for YouTube and SoundCloud links, so update the right one:
+- Spotify links, `spotdl` installed with `pipx`: `pipx runpip spotdl install -U yt-dlp`
+- Spotify links, `spotdl` installed in a venv: `%USERPROFILE%\.spotdl-venv\Scripts\python -m pip install -U yt-dlp`
+- YouTube and SoundCloud links: `pip install -U yt-dlp`
+
 **Spotify downloads crash with a Python traceback mentioning `fastapi`/`starlette`/`on_startup`** — a different Python tool on your machine upgraded `starlette`/`anyio`/`uvicorn` past what `spotdl`'s pinned `fastapi` version supports. Reinstall `spotdl` isolated via `pipx` (see Installation above) so it can't be affected by, or affect, other Python packages.
