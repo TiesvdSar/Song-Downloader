@@ -271,6 +271,9 @@ fn download_and_verify_song(
             .arg(output_template)
             .arg("--overwrite")
             .arg("force");
+        if spotdl_format == "mp3" {
+            cmd.arg("--bitrate").arg("320k");
+        }
         if delay_secs > 0 {
             cmd.arg("--threads").arg("1");
         }
@@ -424,7 +427,9 @@ fn spotify_download(window: &tauri::Window, url: &str, format: &str, output_path
         return;
     }
 
-    let staging_dir = Path::new(output_path).join(".song-downloader-tmp");
+    // Unique per run because it's deleted afterwards: a fixed name could match a
+    // folder that already holds the user's files.
+    let staging_dir = Path::new(output_path).join(format!(".song-downloader-tmp-{}", unique));
     let _ = fs::create_dir_all(&staging_dir);
 
     let total = songs.len();
